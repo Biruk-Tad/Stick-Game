@@ -40,7 +40,7 @@ def display_sticks(sticks):
     row = 1
     while sticks > 0:
         group = min(10, sticks)
-        print("Row {:>2}: ".format(row) + "|  " * group)
+        print("Row {:>2}: ".format(row) + "┃ " * group)
         sticks -= group
         row += 1
 
