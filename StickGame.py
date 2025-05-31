@@ -23,10 +23,9 @@ import random
 
 
 import random
-import os
-
 def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+    print("\n" * 100)
+
 
 def show_rules():
     print("=== NIM GAME RULES ===")
