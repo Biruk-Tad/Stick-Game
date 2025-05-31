@@ -1,4 +1,4 @@
-print('''{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
+banner = '''{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
 {}██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗    ████████╗ ██████╗ {}
 {}██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝    ╚══██╔══╝██╔═══██╗{}
 {}██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗         ██║   ██║   ██║{}
@@ -17,14 +17,14 @@ print('''{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{
 {}╚════██║   ██║   ██║██║     ██╔═██╗ ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝              {}
 {}███████║   ██║   ██║╚██████╗██║  ██╗╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗            {}
 {}╚══════╝   ╚═╝   ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝            {}
-{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}''')
+{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}'''
 
 import random
 
-
-import random
 def clear_screen():
-    print("\n" * 1000)
+    # Print banner at the top and a few blank lines below to clear old content
+    print(banner)
+    print("\n" * 5)
 
 def show_rules():
     print("=== NIM GAME RULES ===")
@@ -59,11 +59,14 @@ def stick_game():
     while sticks <= 0:
         print("\nPlease insert a valid number of stick which is greater than 0 or positive number.\n")
         stick_game()
+        return  # ensure no double continue
+
     clear_screen()
     print(f"\nThere are {sticks} sticks:")
     display_sticks(sticks)
     print(f"\nChoose the number of sticks you want to remove.\nYou can only move 1 - {max_num_stick} sticks\n")
     choice = input("Do you want to go first, say yes or no: ")
+
     while sticks != 0:
         if choice.lower()[0] == "y":
             human = int(input("How many sticks you want to remove: "))
@@ -148,6 +151,8 @@ def stick_game_with_friend():
     while sticks <= 0:
         print("\nPlease insert a valid number of stick which is greater than 0 or positive number.")
         stick_game()
+        return
+
     clear_screen()
     print(f"\nThere are {sticks} sticks:")
     display_sticks(sticks)
@@ -168,6 +173,7 @@ def stick_game_with_friend():
             print("|" + "_" * 40 + "|")
             break
         clear_screen()
+        print(f"\nThere are {sticks} sticks:")
         display_sticks(sticks)
         player2 = int(input("PLAYER 2: How many sticks you want to remove: "))
         while 0 >= player2 or player2 > max_num_stick or player2 > sticks:
@@ -200,11 +206,17 @@ def main():
     elif co == "2":
         stick_game_with_friend()
     elif co == "3":
+        clear_screen()
         show_rules()
+        input("\nPress Enter to return to main menu...")
+        main()
     elif co == "4":
         print("Goodbye! 👋")
     else:
         print("Invalid choice. Please enter a number between 1 and 4.")
+        input("\nPress Enter to try again...")
         main()
 
+# Print banner once at the start and then start main
+print(banner)
 main()
