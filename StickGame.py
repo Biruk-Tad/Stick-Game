@@ -24,7 +24,7 @@ import random
 
 import random
 def clear_screen():
-    print("\n" * 100)
+    print("\n" * 1000)
 
 def show_rules():
     print("=== NIM GAME RULES ===")
