@@ -22,7 +22,6 @@ banner = '''{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}
 import random
 
 def clear_screen():
-    # Print banner at the top and a few blank lines below to clear old content
     print(banner)
     print("\n" * 5)
 
@@ -59,7 +58,7 @@ def stick_game():
     while sticks <= 0:
         print("\nPlease insert a valid number of stick which is greater than 0 or positive number.\n")
         stick_game()
-        return  # ensure no double continue
+        return  
 
     clear_screen()
     print(f"\nThere are {sticks} sticks:")
@@ -216,7 +215,5 @@ def main():
         print("Invalid choice. Please enter a number between 1 and 4.")
         input("\nPress Enter to try again...")
         main()
-
-# Print banner once at the start and then start main
 print(banner)
 main()
